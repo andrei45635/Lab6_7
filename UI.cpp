@@ -53,8 +53,13 @@ void UI::startUI() {
 			int pos;
 			cout << "Introduceti pozitia elementului pe care doriti sa il stergeti: ";
 			cin >> pos;
-			serv.deleteServiceOffer(pos);
-			cout << "Oferta " << pos << " a fost stearsa cu succes!\n";
+			try {
+				serv.deleteServiceOffer(pos);
+				cout << "Oferta " << pos << " a fost stearsa cu succes!\n";
+			}
+			catch (RepoException& msg) {
+				msg.getMessage();
+			}
 		}
 		else if (cmd == 5) {
 			int pos;
@@ -72,8 +77,13 @@ void UI::startUI() {
 			cin >> new_type;
 			cout << "Introduceti noul pret al ofertei: ";
 			cin >> new_price;
-			serv.modifyServiceOffer(pos, new_denum, new_dest, new_type, new_price);
-			cout << "Oferta " << pos << " a fost modificata cu succes!\n";
+			try {
+				serv.modifyServiceOffer(pos, new_denum, new_dest, new_type, new_price);
+				cout << "Oferta " << pos << " a fost modificata cu succes!\n";
+			}
+			catch (RepoException& msg) {
+				msg.getMessage();
+			}
 		}
 		else if (cmd == 6) {
 			int pos;

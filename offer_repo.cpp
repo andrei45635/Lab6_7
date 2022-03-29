@@ -21,6 +21,9 @@ const vector<Offer>& RepoOffer::getAll() {
 }
 
 void RepoOffer::deleteRepoOffer(int pos) {
+	if (pos > offers.size()) {
+		throw RepoException("Oferta nu exista!\n");
+	}
 	for (int i = 0; i < offers.size(); i++) {
 		if (pos == i) {
 			offers.erase(offers.begin()+pos);
@@ -29,6 +32,9 @@ void RepoOffer::deleteRepoOffer(int pos) {
 }
 
 void RepoOffer::modifyRepoOffer(int pos, const Offer& new_ofr) {
+	if (pos > offers.size()) {
+		throw RepoException("Oferta nu exista!\n");
+	}
 	for (int i = 0; i < offers.size(); i++) {
 		if (pos == i) {
 			offers.erase(offers.begin() + pos);
@@ -68,6 +74,13 @@ void test_delete_repo() {
 	assert(offers.size() == 2);
 	test_repo.deleteRepoOffer(1);
 	assert(offers.size() == 1);
+	try {
+		test_repo.deleteRepoOffer(3);
+		assert(false);
+	}
+	catch (RepoException&) {
+		assert(true);
+	}
 }
 
 void test_modify_repo() {
@@ -85,6 +98,13 @@ void test_modify_repo() {
 	assert(ofr3.getDestinatie() == offers[1].getDestinatie());
 	assert(ofr3.getType() == offers[1].getType());
 	assert(ofr3.getPrice() == offers[1].getPrice());
+	try {
+		test_repo.modifyRepoOffer(3, ofr3);
+		assert(false);
+	}
+	catch (RepoException&) {
+		assert(true);
+	}
 }
 
 void test_find_repo() {
