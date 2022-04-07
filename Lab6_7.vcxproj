@@ -145,12 +145,15 @@
     <ClCompile Include="offer_service.cpp" />
     <ClCompile Include="turism.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oferta.h" />
     <ClInclude Include="offer_repo.h" />
     <ClInclude Include="offer_service.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="validator.h" />
+    <ClInclude Include="VectDinamic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

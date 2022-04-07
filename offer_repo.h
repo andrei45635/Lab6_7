@@ -1,6 +1,7 @@
 #pragma once
 
 #include "oferta.h"
+#include "VectDinamic.h"
 #include <vector>
 
 using std::vector;
@@ -37,7 +38,8 @@ private:
 	/*
 	* Lista cu oferte din repo, reprezentata pe vector dinamic din STL
 	*/
-	vector<Offer> offers;
+	VectDinamic<Offer> offers;
+	//vector<Offer> offers;
 
 public:
 
@@ -57,7 +59,8 @@ public:
 	/*
 	* getter pentru toate ofertele
 	*/
-	const vector<Offer>& getAll();
+	const VectDinamic<Offer>& getAll();
+	//const vector<Offer>& getAll();
 	
 	/*
 	* Sterge oferta din repo

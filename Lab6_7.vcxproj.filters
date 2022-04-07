@@ -30,6 +30,9 @@
     <ClCompile Include="UI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Validator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oferta.h">
@@ -42,6 +45,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectDinamic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="validator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

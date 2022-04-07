@@ -17,7 +17,7 @@ private:
 	string denum;
 	string dest;
 	string type;
-	double price;
+	double price{};
 
 public:
 
@@ -46,8 +46,9 @@ public:
 	* Primeste ca parametri atributele private ale ofertei
 	*/
 	Offer(string denum, string dest, string type, double price) : denum{ denum }, dest{ dest }, type{ type }, price{ price }{
-
 	}
+
+	Offer(){}
 };
 
 void testCreateOffer();

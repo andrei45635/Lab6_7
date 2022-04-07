@@ -1,6 +1,8 @@
 #pragma once
 #include "oferta.h"
 #include "offer_repo.h"
+#include "validator.h"
+#include <functional>
 
 /*
 * Clasa ServiceOffer
@@ -9,12 +11,13 @@
 class ServiceOffer {
 private:
 	RepoOffer& repo;
+	OfferValidator& valid;
 
 public:
 	/*
 	* Constructor
 	*/
-	ServiceOffer(RepoOffer& repo) : repo{ repo } {
+	ServiceOffer(RepoOffer& repo, OfferValidator& valid) : repo{ repo }, valid{ valid } {
 
 	}
 
@@ -54,10 +57,30 @@ public:
 	/*
 	* getter pentru ofertele din service
 	*/
-	vector<Offer> getAllService();
+	const VectDinamic<Offer>& getAllService();
+
+	VectDinamic<Offer> filter(std::function<bool(const Offer&)> fct);
+
+	//VectDinamic<Offer>& filter_price(int price);
+	VectDinamic<Offer> filtrare_pret(int price);
+
+	VectDinamic<Offer> filtrare_dest(string dest);
+
+	VectDinamic<Offer> generalSort(bool(*cmpMic)(const Offer& ofr1, const Offer& ofr2));
+
+	bool sortByType(const Offer& ofr1, const Offer& ofr2);
+
+	VectDinamic<Offer> sortDenumire();
+
+	VectDinamic<Offer> sortDest();
+
+	VectDinamic<Offer> sortFinal();
 };
 
 void testCreateService();
 void testDeleteOfferService();
 void testModifyOfferService();
 void testFindOfferService();
+//void testFilterPrice();
+void testFilters();
+void testSorts();

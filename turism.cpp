@@ -1,3 +1,6 @@
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #include <iostream>
 #include "oferta.h"
 #include "offer_repo.h"
@@ -15,14 +18,19 @@ void runAllTests() {
 	testDeleteOfferService();
 	testModifyOfferService();
 	testFindOfferService();
+	//testFilterPrice();
+	testFilters();
+	testSorts();
 	std::cout << "finished testing..." << std::endl;
 }
 
 int main() {
 	runAllTests();
+	OfferValidator valid;
 	RepoOffer repo;
-	ServiceOffer serv(repo);
+	ServiceOffer serv(repo, valid);
 	UI ui(serv);
 	ui.startUI();
+	_CrtDumpMemoryLeaks();
 	return 0;
 }
