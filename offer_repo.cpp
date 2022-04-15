@@ -14,38 +14,41 @@ void RepoOffer::addRepoOffer(const Offer& ofr) {
 		if (oferta.getDenumire() == ofr.getDenumire() && oferta.getDestinatie() == ofr.getDestinatie() && oferta.getType() == ofr.getType())
 			throw RepoException("Oferta exista!\n");
 	}
-	offers.add(ofr);
+	//offers.add(ofr);
+	offers.push_back(ofr);
 }
 
-const VectDinamic<Offer>& RepoOffer::getAll() {
+const vector<Offer>& RepoOffer::getAll() {
 	return offers;
 }
 
 void RepoOffer::deleteRepoOffer(int pos) {
-	if (pos > offers.getSize()) {
+	if (pos > offers.size()) {
 		throw RepoException("Oferta nu exista!\n");
 	}
-	for (int i = 0; i < offers.getSize(); i++) {
+	for (int i = 0; i < offers.size(); i++) {
 		if (pos == i) {
-			offers.delete_elem(pos);
+			offers.erase(offers.begin() + pos);
+			//offers.delete_elem(pos);
 		}
 	}
 }
 
 void RepoOffer::modifyRepoOffer(int pos, const Offer& new_ofr) {
-	if (pos > offers.getSize()) {
+	if (pos > offers.size()) {
 		throw RepoException("Oferta nu exista!\n");
 	}
-	for (int i = 0; i < offers.getSize(); i++) {
+	for (int i = 0; i < offers.size(); i++) {
 		if (pos == i) {
-			//offers.erase(offers.begin() + pos);
-			offers.set(pos, new_ofr);
+			offers.erase(offers.begin() + pos);
+			offers.insert(offers.begin() + pos, new_ofr);
+			//offers.set(pos, new_ofr);
 		}
 	}
 }
 
 Offer RepoOffer::findOfferRepo(int pos) {
-	return offers.getElem(pos);
+	return offers[pos];
 }
 
 void test_create_repo() {
@@ -55,7 +58,7 @@ void test_create_repo() {
 	repots.addRepoOffer(ofr1);
 	repots.addRepoOffer(ofr2);
 	const auto& offers = repots.getAll();
-	assert(offers.getSize() == 2);
+	assert(offers.size() == 2);
 	try {
 		repots.addRepoOffer(ofr1);
 		assert(false);
@@ -72,9 +75,9 @@ void test_delete_repo() {
 	test_repo.addRepoOffer(ofr1);
 	test_repo.addRepoOffer(ofr2);
 	const auto& offers = test_repo.getAll();
-	assert(offers.getSize() == 2);
+	assert(offers.size() == 2);
 	test_repo.deleteRepoOffer(1);
-	assert(offers.getSize() == 1);
+	assert(offers.size() == 1);
 	try {
 		test_repo.deleteRepoOffer(3);
 		assert(false);
@@ -92,13 +95,13 @@ void test_modify_repo() {
 	test_repo.addRepoOffer(ofr1);
 	test_repo.addRepoOffer(ofr2);
 	const auto& offers = test_repo.getAll();
-	assert(offers.getSize() == 2);
+	assert(offers.size() == 2);
 	test_repo.modifyRepoOffer(1, ofr3);
-	assert(offers.getSize() == 2);
-	assert(ofr3.getDenumire() == offers.getElem(1).getDenumire());
-	assert(ofr3.getDestinatie() == offers.getElem(1).getDestinatie());
-	assert(ofr3.getType() == offers.getElem(1).getType());
-	assert(ofr3.getPrice() == offers.getElem(1).getPrice());
+	assert(offers.size() == 2);
+	assert(ofr3.getDenumire() == offers[1].getDenumire());
+	assert(ofr3.getDestinatie() == offers[1].getDestinatie());
+	assert(ofr3.getType() == offers[1].getType());
+	assert(ofr3.getPrice() == offers[1].getPrice());
 	try {
 		test_repo.modifyRepoOffer(3, ofr3);
 		assert(false);
@@ -116,7 +119,7 @@ void test_find_repo() {
 	test_repo.addRepoOffer(ofr1);
 	test_repo.addRepoOffer(ofr2);
 	const auto& offers = test_repo.getAll();
-	assert(offers.getSize() == 2);
+	assert(offers.size() == 2);
 	const auto& found  = test_repo.findOfferRepo(1);
 	assert(found.getDenumire() == ofr2.getDenumire());
 	assert(found.getDestinatie() == ofr2.getDestinatie());

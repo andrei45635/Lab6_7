@@ -21,6 +21,12 @@ void runAllTests() {
 	//testFilterPrice();
 	testFilters();
 	testSorts();
+	testAddCart();
+	testDeleteFromCart();
+	testGenerateRandom();
+	testAddToWish();
+	testDeleteWish();
+	testGenerateWish();
 	std::cout << "finished testing..." << std::endl;
 }
 
@@ -28,7 +34,8 @@ int main() {
 	runAllTests();
 	OfferValidator valid;
 	RepoOffer repo;
-	ServiceOffer serv(repo, valid);
+	Wishlist wish;
+	ServiceOffer serv(repo, valid, wish);
 	UI ui(serv);
 	ui.startUI();
 	_CrtDumpMemoryLeaks();

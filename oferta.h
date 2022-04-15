@@ -48,7 +48,7 @@ public:
 	Offer(string denum, string dest, string type, double price) : denum{ denum }, dest{ dest }, type{ type }, price{ price }{
 	}
 
-	Offer(){}
+	//Offer& operator=(const Offer& ofr, const Offer& ot) noexcept;
 };
 
 void testCreateOffer();

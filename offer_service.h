@@ -2,6 +2,7 @@
 #include "oferta.h"
 #include "offer_repo.h"
 #include "validator.h"
+#include "Wishlist.h"
 #include <functional>
 
 /*
@@ -12,13 +13,13 @@ class ServiceOffer {
 private:
 	RepoOffer& repo;
 	OfferValidator& valid;
+	Wishlist& wish;
 
 public:
 	/*
 	* Constructor
 	*/
-	ServiceOffer(RepoOffer& repo, OfferValidator& valid) : repo{ repo }, valid{ valid } {
-
+	ServiceOffer(RepoOffer& repo, OfferValidator& valid, Wishlist& wish) : repo{ repo }, valid{ valid }, wish{ wish } {
 	}
 
 	ServiceOffer(const ServiceOffer& ot) = delete;
@@ -57,24 +58,32 @@ public:
 	/*
 	* getter pentru ofertele din service
 	*/
-	const VectDinamic<Offer>& getAllService();
+	const vector<Offer>& getAllService();
 
-	VectDinamic<Offer> filter(std::function<bool(const Offer&)> fct);
+	vector<Offer> filter(std::function<bool(const Offer&)> fct);
 
 	//VectDinamic<Offer>& filter_price(int price);
-	VectDinamic<Offer> filtrare_pret(int price);
+	vector<Offer> filtrare_pret(int price);
 
-	VectDinamic<Offer> filtrare_dest(string dest);
+	vector<Offer> filtrare_dest(string dest);
 
-	VectDinamic<Offer> generalSort(bool(*cmpMic)(const Offer& ofr1, const Offer& ofr2));
+	vector<Offer> generalSort(bool(*cmpMic)(const Offer& ofr1, const Offer& ofr2));
 
 	bool sortByType(const Offer& ofr1, const Offer& ofr2);
 
-	VectDinamic<Offer> sortDenumire();
+	vector<Offer> sortDenumire();
 
-	VectDinamic<Offer> sortDest();
+	vector<Offer> sortDest();
 
-	VectDinamic<Offer> sortFinal();
+	vector<Offer> sortFinal();
+
+	void delete_from_wishlist();
+
+	void add_to_wishlist(const string& destinatie);
+
+	void generate_random_offers(int number);
+
+	vector<Offer> get_all_from_wish();
 };
 
 void testCreateService();
@@ -84,3 +93,6 @@ void testFindOfferService();
 //void testFilterPrice();
 void testFilters();
 void testSorts();
+void testAddCart();
+void testDeleteFromCart();
+void testGenerateRandom();

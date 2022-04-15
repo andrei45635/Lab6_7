@@ -33,7 +33,7 @@ void UI::startUI() {
 				cout << "Oferta adaugata cu succes!\n";
 			}
 			catch (ValidException& msg) {
-				auto expt = msg.get_error();
+				const auto& expt = msg.get_error();
 				for (const auto& ex : expt) {
 					cout << ex << std::endl;
 				}
@@ -44,7 +44,7 @@ void UI::startUI() {
 			}
 		}
 		else if (cmd == 2) {
-			auto offers = serv.getAllService();
+			const auto& offers = serv.getAllService();
 			int pos = 0;
 			for (const auto& ofr : offers) {
 				cout << pos << ") Denumirea ofertei este : " << ofr.getDenumire() << ", destinatia este : " << ofr.getDestinatie() << ", tipul este : " << ofr.getType() << ", iar pretul este : " << ofr.getPrice() << std::endl;
@@ -71,7 +71,7 @@ void UI::startUI() {
 				cout << "Oferta " << pos << " a fost stearsa cu succes!\n";
 			}
 			catch (ValidException& msg) {
-				auto expt = msg.get_error();
+				const auto& expt = msg.get_error();
 				for (const auto& ex : expt) {
 					cout << ex << std::endl;
 				}
@@ -102,7 +102,7 @@ void UI::startUI() {
 				cout << "Oferta " << pos << " a fost modificata cu succes!\n";
 			}
 			catch (ValidException& msg) {
-				auto expt = msg.get_error();
+				const auto& expt = msg.get_error();
 				for (const auto& ex : expt) {
 					cout << ex << std::endl;
 				}
@@ -123,7 +123,7 @@ void UI::startUI() {
 			cout << "Introduceti pretul dupa care doriti sa filtrati: ";
 			cin >> price;
 			int pos = 0;
-			auto filtered = serv.filtrare_pret(price);
+			const auto& filtered = serv.filtrare_pret(price);
 			for (const auto& fl : filtered) {
 				cout << "Oferta filtrata " << pos << " este: " << "Denumirea ofertei este : " << fl.getDenumire() << ", destinatia este : " << fl.getDestinatie() << ", tipul este : " << fl.getType() << ", iar pretul este : " << fl.getPrice() << std::endl;
 				pos++;
@@ -134,7 +134,7 @@ void UI::startUI() {
 			cout << "Introduceti destinatia dupa care doriti sa filtrati: ";
 			cin >> dest;
 			int pos = 0;
-			auto filtered = serv.filtrare_dest(dest);
+			const auto& filtered = serv.filtrare_dest(dest);
 			for (const auto& fl : filtered) {
 				cout << "Oferta filtrata " << pos << " este: " << "Denumirea ofertei este : " << fl.getDenumire() << ", destinatia este : " << fl.getDestinatie() << ", tipul este : " << fl.getType() << ", iar pretul este : " << fl.getPrice() << std::endl;
 				pos++;
@@ -142,37 +142,66 @@ void UI::startUI() {
 		}
 		else if (cmd == 9) {
 			int pos = 1;
-			auto sorted = serv.sortDenumire();
+			int reverse = 0;
+			cout << "Introduceti directia dupa care doriti sa sortati: (0 - normal, 1 - reverse) ";
+			cin >> reverse;
+			const auto& sorted = serv.sortDenumire();
 			for (const auto& srt : sorted) {
-				if (pos != 0) {
+				if (pos != 0 && !reverse) {
 					cout << pos << ") Denumirea ofertei este : " << srt.getDenumire() << ", destinatia este : " << srt.getDestinatie() << ", tipul este : " << srt.getType() << ", iar pretul este : " << srt.getPrice() << std::endl;
 					pos++;
 				}
+				/*else if (pos != 0 && reverse) {
+					std::reverse(sorted.begin(), sorted.end());
+					for (const auto& rev : sorted) {
+						cout << pos << ") Denumirea ofertei este : " << rev.getDenumire() << ", destinatia este : " << rev.getDestinatie() << ", tipul este : " << rev.getType() << ", iar pretul este : " << rev.getPrice() << '\n';
+						pos++;
+					}
+					for (size_t i = sorted.size(); i > 0; i--) {
+						cout << pos << ") Denumirea ofertei este : " << sorted[i].getDenumire() << ", destinatia este : " << sorted[i].getDestinatie() << ", tipul este : " << sorted[i].getType() << ", iar pretul este : " << sorted[i].getPrice() << std::endl;
+						pos++;
+					}
+				}*/
 			}
 		}
 		else if (cmd == 10) {
 			int pos = 1;
-			auto sorted = serv.sortDest();
+			int reverse = 0;
+			cout << "Introduceti directia dupa care doriti sa sortati: (0 - normal, 1 - reverse)";
+			cin >> reverse;
+			const auto& sorted = serv.sortDest();
 			for (const auto& srt : sorted) {
-				if (pos != 0) {
+				if (pos != 0 && !reverse) {
 					cout << pos << ") Denumirea ofertei este : " << srt.getDenumire() << ", destinatia este : " << srt.getDestinatie() << ", tipul este : " << srt.getType() << ", iar pretul este : " << srt.getPrice() << std::endl;
 					pos++;
 				}
+				/*else if (pos != 0 && reverse) {
+					std::reverse(sorted.begin(), sorted.end());
+					for (const auto& rev : sorted) {
+						cout << pos << ") Denumirea ofertei este : " << rev.getDenumire() << ", destinatia este : " << rev.getDestinatie() << ", tipul este : " << rev.getType() << ", iar pretul este : " << rev.getPrice() << std::endl;
+						pos++;
+					}
+				}*/
 			}
 		}
 		else if (cmd == 11) {
 			int pos = 1;
-			//bool reverse = false;
-			auto sorted = serv.sortFinal();
+			int reverse = 0;
+			cout << "Introduceti directia dupa care doriti sa sortati: (0 - normal, 1 - reverse)";
+			cin >> reverse;
+			const auto& sorted = serv.sortFinal();
 			for (const auto& srt : sorted) {
-				//if (!reverse) {
-				cout << pos << ") Denumirea ofertei este : " << srt.getDenumire() << ", destinatia este : " << srt.getDestinatie() << ", tipul este : " << srt.getType() << ", iar pretul este : " << srt.getPrice() << std::endl;
-				pos++;
-				//}
-				//else if (reverse) {
-				//	cout << pos << ") Denumirea ofertei este : " << srt.getDenumire() << ", destinatia este : " << srt.getDestinatie() << ", tipul este : " << srt.getType() << ", iar pretul este : " << srt.getPrice() << std::endl;
-				//	pos++;
-				//}
+				if (!reverse) {
+					cout << pos << ") Denumirea ofertei este : " << srt.getDenumire() << ", destinatia este : " << srt.getDestinatie() << ", tipul este : " << srt.getType() << ", iar pretul este : " << srt.getPrice() << std::endl;
+					pos++;
+				}
+				/*else if (reverse) {
+					std::reverse(sorted.begin(), sorted.end());
+					for (const auto& rev : sorted) {
+						cout << pos << ") Denumirea ofertei este : " << rev.getDenumire() << ", destinatia este : " << rev.getDestinatie() << ", tipul este : " << rev.getType() << ", iar pretul este : " << rev.getPrice() << std::endl;
+						pos++;
+					}
+				}*/
 			}
 		}
 	}

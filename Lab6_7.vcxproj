@@ -146,6 +146,7 @@
     <ClCompile Include="turism.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Validator.cpp" />
+    <ClCompile Include="Wishlist.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oferta.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="UI.h" />
     <ClInclude Include="validator.h" />
     <ClInclude Include="VectDinamic.h" />
+    <ClInclude Include="Wishlist.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

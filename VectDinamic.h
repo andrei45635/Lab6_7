@@ -38,7 +38,7 @@ public:
 	Apelat daca construim un nou vector dintr-un r-value (ex temporary, expresie de la return)
 	Obiectul ot nu se mai foloseste astfel se poate refolosi interiorul lui
 	*/
-	VectDinamic(VectDinamic&& ot);
+	VectDinamic(VectDinamic&& ot) noexcept;
 
 	/*
 	Move assignment
@@ -92,7 +92,7 @@ template <typename TElem> VectDinamic<TElem>& VectDinamic<TElem>::operator=(cons
 	return *this;
 }
 
-template<typename TElem> VectDinamic<TElem>::VectDinamic(VectDinamic&& ot) {
+template<typename TElem> VectDinamic<TElem>::VectDinamic(VectDinamic&& ot) noexcept{
 	//copiaza datele de la un pointer la altul
 	elems = ot.elems;
 	lg = ot.lg;

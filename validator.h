@@ -1,16 +1,19 @@
 #pragma once
 #include <string>
 #include "oferta.h"
-#include "VectDinamic.h"
+//#include "VectDinamic.h"
+#include <vector>
+
+using std::vector;
 
 class ValidException {
 private:
-	VectDinamic<std::string> exceptions;
+	vector<std::string> exceptions;
 public:
 	//constructor pentru validator
-	ValidException(VectDinamic<std::string> exceptions): exceptions{exceptions}{}
+	ValidException(vector<std::string> exceptions): exceptions{exceptions}{}
 	//getter pentru validator
-	const VectDinamic<std::string>& get_error() const { return this->exceptions; }
+	const vector<std::string>& get_error() const { return this->exceptions; }
 };
 
 class OfferValidator {
