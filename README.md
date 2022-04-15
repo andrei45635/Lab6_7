@@ -15,7 +15,7 @@ Creați o aplicație care permite:
 · căutare oferta ✔️
 
 
-· filtrare oferte turistice după: destinație, preț ⏭️
+· filtrare oferte turistice după: destinație, preț ✔️
 
 
-· sortare oferte după: denumire, destinație, tip + preț ▶️
+· sortare oferte după: denumire, destinație, tip + preț ✔️
