@@ -37,8 +37,8 @@ Adăugați următoarele acțiuni (elemente de meniu):
 • Generează cos: utilizatorul introduce numărul total de oferte, coșul se populează aleator cu oferte turistice ✔️
 
 
-• Export. Salvează cos in fișier : CVS sau HTML. Se face salvarea in fișier doar când s-a selectat acest meniu, coșul nu este persistent (la repornire aplicație coșul este din nou gol) , utilizatorul introduce numele fișierului unde se salvează la fiecare export. 🔜
+• Export. Salvează cos in fișier : CVS sau HTML. Se face salvarea in fișier doar când s-a selectat acest meniu, coșul nu este persistent (la repornire aplicație coșul este din nou gol) , utilizatorul introduce numele fișierului unde se salvează la fiecare export. ✔️
 
 
- După fiecare acțiune utilizator se afișează numărul total al ofertelor din cos.
+ După fiecare acțiune utilizator se afișează numărul total al ofertelor din cos. ✔️
 
